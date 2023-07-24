@@ -1,0 +1,116 @@
+version: '3.1'
+
+services:
+  redis1:
+    user: root
+    image: bitnami/redis-cluster:6.2.13
+    container_name: redis-1
+    environment:
+      - 'REDIS_PASSWORD=123456'
+      - 'REDIS_NODES=redis1 redis2 redis3 redis4 redis5 redis6'
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - /data/redis-cluster/redis-1:/bitnami
+    ports:
+      - 16381:6379
+    networks:
+      redis-cluster_default:
+        ipv4_address: 10.0.4.2
+
+  redis2:
+    user: root
+    image: bitnami/redis-cluster:6.2.13
+    container_name: redis-2
+    environment:
+      - 'REDIS_PASSWORD=123456'
+      - 'REDIS_NODES=redis1 redis2 redis3 redis4 redis5 redis6'
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - /data/redis-cluster/redis-2:/bitnami
+    ports:
+      - 16382:6379
+    networks:
+      redis-cluster_default:
+        ipv4_address: 10.0.4.3
+
+  redis3:
+    user: root
+    image: bitnami/redis-cluster:6.2.13
+    container_name: redis-3
+    environment:
+      - 'REDIS_PASSWORD=123456'
+      - 'REDIS_NODES=redis1 redis2 redis3 redis4 redis5 redis6'
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 16383:6379
+    networks:
+      redis-cluster_default:
+        ipv4_address: 10.0.4.4
+    volumes:
+      - /data/redis-cluster/redis-3:/bitnami
+
+  redis4:
+    user: root
+    image: bitnami/redis-cluster:6.2.13
+    container_name: redis-4
+    environment:
+      - 'REDIS_PASSWORD=123456'
+      - 'REDIS_NODES=redis1 redis2 redis3 redis4 redis5 redis6'
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - /data/redis-cluster/redis-4:/bitnami
+    ports:
+      - 16384:6379
+    networks:
+      redis-cluster_default:
+        ipv4_address: 10.0.4.5
+
+  redis5:
+    user: root
+    image: bitnami/redis-cluster:6.2.13
+    container_name: redis-5
+    environment:
+      - 'REDIS_PASSWORD=123456'
+      - 'REDIS_NODES=redis1 redis2 redis3 redis4 redis5 redis6'
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 16385:6379
+    networks:
+      redis-cluster_default:
+        ipv4_address: 10.0.4.6
+    volumes:
+      - /data/redis-cluster/redis-5:/bitnami
+
+  redis6:
+    user: root
+    image: bitnami/redis-cluster:6.2.13
+    container_name: redis-6
+    environment:
+      - 'REDIS_PASSWORD=123456'
+      - 'REDISCLI_AUTH=123456'
+      - 'REDIS_NODES=redis1 redis2 redis3 redis4 redis5 redis6'
+      - 'REDISCLI_AUTH=bitnami'
+      - 'REDIS_CLUSTER_REPLICAS=1'
+      - 'REDIS_CLUSTER_CREATOR=yes'
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 16386:6379
+    networks:
+      redis-cluster_default:
+        ipv4_address: 10.0.4.7
+    volumes:
+      - /data/redis-cluster/redis-6:/bitnami
+    depends_on:
+      - redis1
+      - redis2
+      - redis3
+      - redis4
+      - redis5
+
+
+networks:
+  redis-cluster_default:
+    driver: overlay
+    ipam:
+      config:
+        - subnet: 10.0.4.0/24
