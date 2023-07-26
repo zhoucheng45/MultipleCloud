@@ -1,0 +1,51 @@
+#server:
+#  port: 8080
+
+# SSH Properties
+#ssh:
+#  url: 43.154.107.17
+#  port: 22
+#  user: root
+#  password: Z00c9892>/
+#
+## Remote Host Properties
+#mysql:
+#  host: 152.67.210.191
+#  port: 33060
+
+# Spring Data Source Properties
+#spring:
+#  datasource:
+#    url: jdbc:mysql://152.69.224.101:33062/test
+#    username: root
+#    password: 123456
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  redis:
+#    password: 123456
+#    host: 152.67.210.191
+#    port: 16379
+#    connect-timeout: 10s
+#    timeout: 30000
+#    lettuce:
+#      pool:
+#        max-idle: 50
+#        min-idle: 1
+#        max-wait:
+
+nacos:
+  config:
+    server-addr: ${nacos_server}
+    username: ${nacos_user}
+    password: ${nacos_pwd}
+    data-id: ${nacos_dataId}
+    auto-refresh: true
+    bootstrap:
+          enable: true
+    type: ${nacos_file_type}
+## Logger Config
+#logging:
+#  level:
+#    com.baomidou.mybatisplus.samples.quickstart: debug
+
+
+
