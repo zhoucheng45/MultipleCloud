@@ -8,5 +8,5 @@ RUN mvn clean package -DskipTests=true
 # 第二阶段:构建镜像
 FROM openjdk:11-jdk-slim
 WORKDIR /app
-COPY --from=build /app/before/target/before.jar /app/before.jar
+COPY --from=build /app/target/before.jar /app/before.jar
 ENTRYPOINT ["java", "-jar", "/app/before.jar"]
