@@ -5,6 +5,7 @@
         <groupId>com.benny.multiple.cloud</groupId>
         <artifactId>multiple-cloud</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>before</artifactId>
