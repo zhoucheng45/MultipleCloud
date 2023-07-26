@@ -32,7 +32,8 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
     @Override
     public Page<People> queryLast() {
         LambdaQueryWrapper<People> wrapper = new LambdaQueryWrapper<>(People.class);
-        wrapper.ge(People::getAge, 30);
+        wrapper.ge(People::getAge, 30)
+                .orderByDesc(People::getCreateTime);
         Page<People> page = new Page<>(1,10);
         Page<People> page1 = peopleMapper.selectPage(page, wrapper);
         return page1;
