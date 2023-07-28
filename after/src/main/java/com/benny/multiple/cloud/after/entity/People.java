@@ -1,10 +1,8 @@
-package com.benny.multiple.cloud.before.entity;
+package com.benny.multiple.cloud.after.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -28,9 +26,6 @@ public class People implements Serializable {
 
     private String name;
 
-
-
-    @Schema(description = "用户年龄")
     private Integer age;
 
     private LocalDateTime createTime;
