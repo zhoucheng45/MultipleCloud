@@ -1,0 +1,10 @@
+nacos:
+  config:
+    server-addr: ${nacos_server}
+    username: ${nacos_user}
+    password: ${nacos_pwd}
+    data-id: ${nacos_dataId}
+    auto-refresh: true
+    bootstrap:
+      enable: true
+    type: ${nacos_file_type}
