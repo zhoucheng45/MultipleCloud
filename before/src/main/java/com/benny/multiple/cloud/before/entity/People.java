@@ -3,7 +3,6 @@ package com.benny.multiple.cloud.before.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -28,7 +27,6 @@ public class People implements Serializable {
 
 
 
-    @Schema(description = "用户年龄")
     private Integer age;
 
     private LocalDateTime createTime;
