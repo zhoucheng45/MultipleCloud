@@ -1,2 +1,2 @@
 git pull
-docker build -t multiple-cloud:v1 .
+docker build --build-arg PROJECT_NAME=$1 -t multiple-cloud:v1 .
