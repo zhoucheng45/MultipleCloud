@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: springcloud-demo
+  cloud:
+    nacos:
+      config:
+        server-addr: 190.92.237.168:32522
+        namespace: aea3a605-30b1-4f8b-8dd3-577c0b6d6b6c
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        # 在 Nacos Spring Cloud 中，dataId 的完整格式如下：
+        # ${prefix}-${spring.profiles.active}.${file-extension}
+        username: nacos
+        password: Z00c9892>/
+        enabled: true
+
+logging:
+  level:
+    com.alibaba.**: debug
+    root: debug

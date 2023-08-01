@@ -34,20 +34,22 @@
 
 nacos:
   config:
-    server-addr: ${nacos_server_addr}  # 152.67.210.191:28848
-    username: ${nacos_username}
-    password: ${nacos_pwd}  #Z00c9892>/
-    data-id: ${nacos_dataId}
+    server-addr: 190.92.237.168:32522
+    username: nacos
+    password: Z00c9892>/
     auto-refresh: true
     bootstrap:
           enable: true
-    type: ${nacos_type}
-    namespace: ${nacos_ns}
-    group: ${nacos_group}
+    type: yaml
+    namespace: aea3a605-30b1-4f8b-8dd3-577c0b6d6b6c
+    group: DEFAULT_GROUP
+    data-id: springcloud-demo.yaml
+#    enable-remote-sync-config: true
 ## Logger Config
-#logging:
-#  level:
-#    com.baomidou.mybatisplus.samples.quickstart: debug
+logging:
+  level:
+    com.alibaba.**: debug
+    root: debug
 
 
 
