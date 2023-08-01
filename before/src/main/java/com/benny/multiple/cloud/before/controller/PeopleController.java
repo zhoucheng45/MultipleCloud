@@ -4,13 +4,11 @@ package com.benny.multiple.cloud.before.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.benny.multiple.cloud.before.entity.People;
 import com.benny.multiple.cloud.before.service.IPeopleService;
-import io.swagger.v3.oas.annotations.Operation;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RBucket;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisKeyValueTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +37,6 @@ public class PeopleController {
     @Autowired
     private RedissonClient redissonClient;
 
-    @Operation(summary = "翻页查询", description = "翻页查询，根据创建时间倒序")
     @GetMapping("last")
     public Page<People> last(){
         Page<People> peoplePage = peopleService.queryLast();
@@ -53,7 +50,6 @@ public class PeopleController {
         return "OK";
     }
 
-    @Operation()
     @GetMapping("redis")
     public String redis(@RequestParam("key")String key, @RequestParam(value = "value", required = false) String value){
         if(StringUtils.isNotBlank(value)){

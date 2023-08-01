@@ -8,3 +8,91 @@ nacos:
     bootstrap:
       enable: true
     type: ${nacos_file_type}
+
+devspore:
+  datasource:
+    props:
+      version: v1
+      appId: xxx          # MAS服务应用列表页中“应用id”列对应值
+      monitorId: xxx      # MAS服务DB监控页中“监控ID”列对应值
+      databaseName: xxx   # MAS服务DB监控页选择应用单击“编辑”中连接池配置下“数据库名称”列对应值
+      decipherClassName: xxx.xxx.xxx    # 密码解析类 默认：com.huawei.devspore.mas.password.DefaultDecipher
+      region: az0
+    etcd:
+      address: 127.0.0.2:2379,127.0.0.2:2379,127.0.0.2:2379
+      apiVersion: v3
+      username: etcduser
+      password: etcdpwd
+      httpsEnable: false
+    sources:
+      ds1:      # 数据库节点名称:ds1   与MAS服务中连接池中的命名一致。
+        driverClassName: com.mysql.jdbc.Driver
+        jdbcUrl: jdbc:mysql://127.0.0.1:3306/ds0   # 与MAS服务中连接池中各节点下数据库连接地址一致
+        username: datasourceuser
+        password: datasourcepwd           # 如果密码为加密，需要自定义实现解密类配置：props.decipherClassName
+        type: com.zaxxer.hikari.HikariDataSource  # 数据源类型
+        props:
+          connectionTimeout: 30000
+          maximumPoolSize: 200
+      ds1-slave0:
+        driverClassName: com.mysql.jdbc.Driver
+        jdbcUrl: jdbc:mysql://127.0.0.1:3306/ds0_slave0
+        username: datasourceuser
+        password: datasourcepwd
+        type: com.zaxxer.hikari.HikariDataSource
+        props:
+          connectionTimeout: 30000
+          maximumPoolSize: 200
+      ds1-slave1:
+        driverClassName: com.mysql.jdbc.Driver
+        jdbcUrl: jdbc:mysql://127.0.0.1:3306/ds0_slave1
+        username: datasourceuser
+        password: datasourcepwd
+        type: com.zaxxer.hikari.HikariDataSource
+        props:
+          connectionTimeout: 30000
+          maximumPoolSize: 200
+      ds2:
+        driverClassName: com.mysql.jdbc.Driver
+        jdbcUrl: jdbc:mysql://127.0.0.1:3306/ds1
+        username: datasourceuser
+        password: datasourcepwd
+        type: com.zaxxer.hikari.HikariDataSource
+        props:
+          connectionTimeout: 30000
+          maximumPoolSize: 200
+      ds2-slave0:
+        driverClassName: com.mysql.jdbc.Driver
+        jdbcUrl: jdbc:mysql://127.0.0.1:3306/ds1_slave0
+        username: datasourceuser
+        password: datasourcepwd
+        type: com.zaxxer.hikari.HikariDataSource
+        props:
+          connectionTimeout: 30000
+          maximumPoolSize: 200
+      ds2-slave1:
+        driverClassName: com.mysql.jdbc.Driver
+        jdbcUrl: jdbc:mysql://127.0.0.1:3306/ds1_slave1
+        username: datasourceuser
+        password: datasourcepwd
+        type: com.zaxxer.hikari.HikariDataSource
+        props:
+          connectionTimeout: 30000
+          maximumPoolSize: 200
+    router:
+      active: dc1
+      routeAlgorithm: single-read-write
+      nodes:
+        dc1:
+          master: ds1
+          loadBalance: ROUND_ROBIN
+          slaves:
+            - ds1-slave0
+            - ds1-slave1
+        dc2:
+          master: ds1
+          loadBalance: ROUND_ROBIN
+          slaves:
+            - ds2-slave0
+            - ds2-slave1
+
