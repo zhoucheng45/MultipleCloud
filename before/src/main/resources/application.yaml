@@ -49,7 +49,7 @@ nacos:
 logging:
   level:
     com.alibaba.**: debug
-    root: debug
+    root: info
 
 
 

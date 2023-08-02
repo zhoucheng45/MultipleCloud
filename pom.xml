@@ -9,7 +9,6 @@
     <modules>
         <module>before</module>
         <module>after</module>
-        <module>springcloud-demo</module>
     </modules>
 
     <name>MultipleCloud</name>
