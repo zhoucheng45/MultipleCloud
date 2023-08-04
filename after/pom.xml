@@ -21,17 +21,17 @@
 
     <dependencies>
         <!-- 华为sdk集成开始 -->
-        <dependency>
-            <groupId>com.huaweicloud.devspore</groupId>
-            <artifactId>spring-cloud-starter-huawei-devspore-datasource</artifactId>
-            <version>1.3.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-autoconfigure</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.huaweicloud.devspore</groupId>-->
+<!--            <artifactId>spring-cloud-starter-huawei-devspore-datasource</artifactId>-->
+<!--            <version>1.3.0-SNAPSHOT</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                    <artifactId>spring-boot-autoconfigure</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
         <!-- 华为sdk集成结束 -->
 
         <dependency>

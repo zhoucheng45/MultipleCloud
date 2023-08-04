@@ -12,7 +12,7 @@ nacos:
 devspore:
   datasource:
     props:
-      version: v1
+      version: v1 #固定值v1
       appId: xxx          # MAS服务应用列表页中“应用id”列对应值
       monitorId: xxx      # MAS服务DB监控页中“监控ID”列对应值
       databaseName: xxx   # MAS服务DB监控页选择应用单击“编辑”中连接池配置下“数据库名称”列对应值
