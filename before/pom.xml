@@ -81,7 +81,12 @@
         </dependency>
     </dependencies>
 
-
+    <repositories>
+        <repository>
+            <id>maven-public</id>
+            <url>http://152.67.210.191:8081/repository/maven-public/</url>
+        </repository>
+    </repositories>
     <dependencyManagement>
         <dependencies>
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
@@ -111,6 +116,21 @@
         </dependencies>
     </dependencyManagement>
 
+    <!-- 定义发布的仓库 -->
+    <distributionManagement>
+        <!-- 用于发布snapshot版本的仓库 -->
+        <snapshotRepository>
+            <!-- maven settings.xml文件中 <servers>元素下的<server><id>值相同 -->
+            <id>maven-snapshots</id>
+            <url>http://152.67.210.191:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+
+        <!-- 用于发布release版本的仓库 -->
+        <repository>
+            <id>maven-releases</id>
+            <url>http://152.67.210.191:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <finalName>${project.artifactId}</finalName>

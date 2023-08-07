@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>before</module>
-<!--        <module>after</module>-->
+        <module>after</module>
     </modules>
 
     <name>MultipleCloud</name>
