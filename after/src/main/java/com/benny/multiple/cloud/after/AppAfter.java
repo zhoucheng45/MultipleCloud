@@ -11,7 +11,6 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 @SpringBootApplication
 @EnableNacosConfig
-@NacosPropertySource(dataId = "example", autoRefreshed = true)  // 加载dataId
 public class AppAfter {
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(AppAfter.class, args);

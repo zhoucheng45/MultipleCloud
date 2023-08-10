@@ -82,10 +82,10 @@ public class PeopleController {
 
         Page<People> peoplePage = peopleService.queryLast();
         RBucket<Page<People>> people = redissonClient.getBucket("people");
+
         people.set(peoplePage);
 
         Page<People> o = people.get();
-
         return o;
     }
     @GetMapping("redissonLock")
