@@ -101,7 +101,7 @@ public class PeopleController {
         people.set(peoplePage);
 
         Page<People> o = people.get();
-
+        lock.unlock();
         return o;
     }
 
