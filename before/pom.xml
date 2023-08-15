@@ -84,7 +84,7 @@
     <repositories>
         <repository>
             <id>maven-public</id>
-            <url>http://152.67.210.191:8081/repository/maven-public/</url>
+            <url>http://159.138.134.250:8081/repository/maven-public/</url>
         </repository>
     </repositories>
     <dependencyManagement>
