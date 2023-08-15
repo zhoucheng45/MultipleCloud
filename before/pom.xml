@@ -122,13 +122,13 @@
         <snapshotRepository>
             <!-- maven settings.xml文件中 <servers>元素下的<server><id>值相同 -->
             <id>maven-snapshots</id>
-            <url>http://152.67.210.191:8081/repository/maven-snapshots/</url>
+            <url>http://159.138.134.250:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
 
         <!-- 用于发布release版本的仓库 -->
         <repository>
             <id>maven-releases</id>
-            <url>http://152.67.210.191:8081/repository/maven-releases/</url>
+            <url>http://159.138.134.250:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
