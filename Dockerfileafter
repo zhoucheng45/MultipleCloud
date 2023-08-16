@@ -11,7 +11,7 @@ RUN mvn clean package -DskipTests=true
 
 
 # 第二阶段:构建镜像
-FROM openjdk:11-jdk-slim
+FROM jdk:17.0.8
 WORKDIR /app
 COPY --from=build /app/after/target/after.jar /app/after.jar
 ENTRYPOINT ["java", "-jar", "/app/after.jar"]
