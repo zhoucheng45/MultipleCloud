@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.benny.multiple.cloud.before.mapper")
+@MapperScan("com.benny.multiple.cloud.after.mapper")
 public class MybatisPlusConfig {
 
     @Bean

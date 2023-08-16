@@ -24,17 +24,17 @@ public class RedisConf {
     @Value("${spring.redis.lockTimeOut:30000}")
     private long lockWatchTimeOut;
 
-    @Bean(destroyMethod="shutdown")
-    public RedissonClient redisson() {
-        Config config = new Config();
-        config.useSingleServer()
-                .setAddress(SCHEMA_PREFIX+"152.67.210.191:16379")
-                .setPassword("123456")
-                .setTimeout(20000)
-                .setConnectTimeout(20000)
-                .setIdleConnectionTimeout(20000);
-        return Redisson.create(config);
-    }
+//    @Bean(destroyMethod="shutdown")
+//    public RedissonClient redisson() {
+//        Config config = new Config();
+//        config.useSingleServer()
+//                .setAddress(SCHEMA_PREFIX+"152.67.210.191:16379")
+//                .setPassword("123456")
+//                .setTimeout(20000)
+//                .setConnectTimeout(20000)
+//                .setIdleConnectionTimeout(20000);
+//        return Redisson.create(config);
+//    }
 
 
     @Bean
