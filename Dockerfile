@@ -14,3 +14,5 @@ FROM openjdk:11-jdk-slim
 WORKDIR /app
 COPY --from=build /app/before/target/before.jar /app/before.jar
 ENTRYPOINT ["java", "-jar", "/app/before.jar"]
+
+
