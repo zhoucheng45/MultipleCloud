@@ -12,7 +12,6 @@ RUN mvn clean package -DskipTests=true
 
 # 第二阶段:构建镜像
 FROM registry-intl.cn-hongkong.aliyuncs.com/my-link/jdk:17.0.8
-RUN yum install -y langpacks-zh_CN
 ENV LANG=zh_CN.UTF-8
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
