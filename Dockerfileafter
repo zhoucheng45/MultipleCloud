@@ -1,5 +1,5 @@
 # 第一阶段:编译Maven项目
-FROM jdk-17-maven3.9.4:v1 AS build
+FROM registry-intl.cn-hongkong.aliyuncs.com/my-link/jdk-17-maven3.9.4:v1 AS build
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ RUN mvn clean package -DskipTests=true
 
 
 # 第二阶段:构建镜像
-FROM jdk:17.0.8
+FROM registry-intl.cn-hongkong.aliyuncs.com/my-link/jdk:17.0.8
 WORKDIR /app
 COPY --from=build /app/after/target/after.jar /app/after.jar
 ENTRYPOINT ["java", "-jar", "/app/after.jar"]
