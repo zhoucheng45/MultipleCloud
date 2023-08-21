@@ -9,56 +9,56 @@ logging:
     com.alibaba.**: ${ALI_LOG:info}
     root: ${ROOT_LOG:info}
 
-
-devspore:
-  datasource:
-    # 如果配置了etcd，props则必须配置
-    props:
-      version: v1
-      appId: b0a8b0c5-ad2b-4fd0-8dd4-1996f7307ea6
-      monitorId: b1de5f9b-f8cd-4bdb-b775-5bc602a835bc
-      databaseName: test
-      decipherClassName: com.benny.multiple.cloud.after.config.MyDecipher  # 加解密类，需要实现基类 com.huawei.devspore.mas.password.Decipher，默认值为com.huawei.devspore.mas.password.DefaultDecipher【如果MAS服务上配置了用户名和密码，且密码是加密的，需要自己实现该类解密密文】
-      region: az0
-
-    # etcd配置，对接MAS服务关键配置，本地模式则无需配置
-    etcd:
-      address: 192.168.0.168:2379,192.168.0.182:2379,192.168.0.124:2379
-      apiVersion: v3
-      username: etcduser
-      password: nqJj9OPtECF9K2wDSCiRag==    # 请去基本信息页的ETCD链接地址自行查询，并务必进行加密处理
-      httpsEnable: true
-#      certificatePath: ./mas-etcdssl/     # 如没有开启客户端双向认证，则此字段填写空值，否则填写etcd证书路径, 私钥请务必加密保存
-
-    # 数据源配置 - 必选
-    sources:
-      ds1:
-        driverClassName: com.mysql.cj.jdbc.Driver  # 驱动名称，自定义
-        jdbcUrl: jdbc:mysql://192.168.0.81:3306/test
-        username: root
-        password: nqJj9OPtECF9K2wDSCiRag==    # 请务必进行加密处理
-        type: com.zaxxer.hikari.HikariDataSource  # 数据源类型，自定义，目前只支持，com.zaxxer.hikari.HikariDataSource 和 org.apache.commons.dbcp2.BasicDataSource
-      ds2:
-        driverClassName: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://192.168.0.162:3306/test
-        username: root
-        password: nqJj9OPtECF9K2wDSCiRag==    # 请务必进行加密处理
-        type: com.zaxxer.hikari.HikariDataSource
-
-
-    # 路由配置 - 必选
-    router:
-      active: dc1
-      routeAlgorithm: single-read-write
-      nodes:
-        dc1:
-          master: ds1
-          azs:
-          loadBalance: round_robin
-          slaves :
-
-        dc2:
-          master: ds2
-          azs:
-          loadBalance: round_robin
-          slaves :
+#
+#devspore:
+#  datasource:
+#    # 如果配置了etcd，props则必须配置
+#    props:
+#      version: v1
+#      appId: b0a8b0c5-ad2b-4fd0-8dd4-1996f7307ea6
+#      monitorId: b1de5f9b-f8cd-4bdb-b775-5bc602a835bc
+#      databaseName: test
+#      decipherClassName: com.benny.multiple.cloud.after.config.MyDecipher  # 加解密类，需要实现基类 com.huawei.devspore.mas.password.Decipher，默认值为com.huawei.devspore.mas.password.DefaultDecipher【如果MAS服务上配置了用户名和密码，且密码是加密的，需要自己实现该类解密密文】
+#      region: az0
+#
+#    # etcd配置，对接MAS服务关键配置，本地模式则无需配置
+#    etcd:
+#      address: 192.168.0.168:2379,192.168.0.182:2379,192.168.0.124:2379
+#      apiVersion: v3
+#      username: etcduser
+#      password: nqJj9OPtECF9K2wDSCiRag==    # 请去基本信息页的ETCD链接地址自行查询，并务必进行加密处理
+#      httpsEnable: true
+##      certificatePath: ./mas-etcdssl/     # 如没有开启客户端双向认证，则此字段填写空值，否则填写etcd证书路径, 私钥请务必加密保存
+#
+#    # 数据源配置 - 必选
+#    sources:
+#      ds1:
+#        driverClassName: com.mysql.cj.jdbc.Driver  # 驱动名称，自定义
+#        jdbcUrl: jdbc:mysql://192.168.0.81:3306/test
+#        username: root
+#        password: nqJj9OPtECF9K2wDSCiRag==    # 请务必进行加密处理
+#        type: com.zaxxer.hikari.HikariDataSource  # 数据源类型，自定义，目前只支持，com.zaxxer.hikari.HikariDataSource 和 org.apache.commons.dbcp2.BasicDataSource
+#      ds2:
+#        driverClassName: com.mysql.cj.jdbc.Driver
+#        jdbcUrl: jdbc:mysql://192.168.0.162:3306/test
+#        username: root
+#        password: nqJj9OPtECF9K2wDSCiRag==    # 请务必进行加密处理
+#        type: com.zaxxer.hikari.HikariDataSource
+#
+#
+#    # 路由配置 - 必选
+#    router:
+#      active: dc1
+#      routeAlgorithm: single-read-write
+#      nodes:
+#        dc1:
+#          master: ds1
+#          azs:
+#          loadBalance: round_robin
+#          slaves :
+#
+#        dc2:
+#          master: ds2
+#          azs:
+#          loadBalance: round_robin
+#          slaves :

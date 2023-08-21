@@ -84,7 +84,7 @@
     <repositories>
         <repository>
             <id>maven-public</id>
-            <url>http://159.138.134.250:8081/repository/maven-public/</url>
+            <url>http://190.92.239.189:8081/repository/maven-public/</url>
         </repository>
     </repositories>
     <dependencyManagement>
@@ -122,13 +122,13 @@
         <snapshotRepository>
             <!-- maven settings.xml文件中 <servers>元素下的<server><id>值相同 -->
             <id>maven-snapshots</id>
-            <url>http://159.138.134.250:8081/repository/maven-snapshots/</url>
+            <url>http://190.92.239.189:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
 
         <!-- 用于发布release版本的仓库 -->
         <repository>
             <id>maven-releases</id>
-            <url>http://159.138.134.250:8081/repository/maven-releases/</url>
+            <url>http://190.92.239.189:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
