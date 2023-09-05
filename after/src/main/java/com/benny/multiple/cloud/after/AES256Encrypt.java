@@ -38,7 +38,7 @@ public class AES256Encrypt {
       byte[] decrypted = cipher.doFinal(Base64.decodeBase64(input));
       return new String(decrypted);
     }catch (Exception e){
-      log.error("AES解密失败");
+      log.error("AES decrypt fail!, ", e);
       throw new RuntimeException(e);
     }
   }
