@@ -4,6 +4,7 @@ package com.benny.multiple.cloud.after.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.benny.multiple.cloud.after.entity.People;
 import com.benny.multiple.cloud.after.service.IPeopleService;
+import com.huawei.devspore.mas.redis.core.MultiZoneClient;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RBucket;
 import org.redisson.api.RLock;
@@ -36,6 +37,9 @@ public class PeopleController {
     @Autowired
     private RedissonClient redissonClient;
 
+
+    @Autowired
+    private MultiZoneClient client;
     @GetMapping("last")
     public Page<People> last(){
         Page<People> peoplePage = peopleService.queryLast();
@@ -70,6 +74,7 @@ public class PeopleController {
 
         Page<People> peoplePage = peopleService.queryLast();
         RBucket<Page<People>> people = redissonClient.getBucket("people");
+
         people.set(peoplePage);
 
         Page<People> o = people.get();

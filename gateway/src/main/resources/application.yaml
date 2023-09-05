@@ -1,0 +1,21 @@
+# application.yml
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: example_route
+          uri: http://127.0.0.1:8081
+          predicates:
+            - Path=/people/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true

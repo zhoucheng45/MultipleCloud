@@ -9,6 +9,7 @@
     <modules>
         <module>before</module>
         <module>after</module>
+        <module>gateway</module>
     </modules>
 
     <name>MultipleCloud</name>

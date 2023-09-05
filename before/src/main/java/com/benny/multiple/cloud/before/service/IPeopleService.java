@@ -17,5 +17,6 @@ public interface IPeopleService extends IService<People> {
     Page<People> queryLast();
 
     void tx();
+    void txBatch();
 
 }

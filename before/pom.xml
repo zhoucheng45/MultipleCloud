@@ -27,6 +27,12 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
             <version>2.5.15</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.javacrumbs.shedlock/shedlock-provider-redis-spring -->
+        <dependency>
+            <groupId>net.javacrumbs.shedlock</groupId>
+            <artifactId>shedlock-provider-redis-spring</artifactId>
+            <version>4.42.0</version>
+        </dependency>
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
@@ -71,6 +77,7 @@
             <artifactId>nacos-config-spring-boot-starter</artifactId>
             <version>0.2.12</version>
         </dependency>
+
 
 
         <dependency>

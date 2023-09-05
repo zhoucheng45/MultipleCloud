@@ -6,8 +6,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.benny.multiple.cloud.before.entity.People;
 import com.benny.multiple.cloud.before.mapper.PeopleMapper;
 import com.benny.multiple.cloud.before.service.IPeopleService;
+import net.javacrumbs.shedlock.core.LockProvider;
+import net.javacrumbs.shedlock.core.SchedulerLock;
+import net.javacrumbs.shedlock.core.SimpleLock;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +19,7 @@ import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <p>
@@ -27,6 +32,7 @@ import java.util.List;
 @Service
 public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> implements IPeopleService {
 
+    public static long number;
     @Resource
     PeopleMapper peopleMapper;
     @Override
@@ -40,20 +46,15 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
     }
 
 
+
     @Transactional
     @Override
     public void tx() {
         List<People> peopleList = new ArrayList<>(100);
 
-        for (int i = 0; i < 20; i++) {
-            People people = new People();
-            people.setAge((int)(Math.random()*100));
-            people.setName(RandomStringUtils.random(10,true,true));
 
-            LocalDateTime now = LocalDateTime.now();
-            now.plusMinutes((int)(Math.random()*100));
-            people.setCreateTime(now);
-            people.setUpdateTime(now);
+        for (int i = 0; i < 20; i++) {
+            People people = getPeople();
             this.save(people);  // 采用一条一条插入，模拟大事务。
 
             try {
@@ -66,4 +67,37 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
         }
 //        this.saveBatch(peopleList,peopleList.size());
     }
+
+
+    @Transactional
+    @Override
+    public void txBatch() {
+        List<People> peopleList = new ArrayList<>(100);
+
+
+        for (int i = 0; i < 20; i++) {
+            People people = getPeople();
+            peopleList.add(people);
+        }
+        this.saveBatch(peopleList,peopleList.size());
+    }
+
+    private static People getPeople() {
+        People people = new People();
+        people.setAge((int)(Math.random()*100));
+        people.setName(RandomStringUtils.random(10,true,true));
+
+        LocalDateTime now = LocalDateTime.now();
+        now.plusMinutes((int)(Math.random()*100));
+        people.setCreateTime(now);
+        people.setUpdateTime(now);
+        return people;
+    }
+
+    @SchedulerLock(name = "wer")
+    public void redisLock(){
+        number ++;
+    }
+
+
 }
