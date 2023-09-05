@@ -22,7 +22,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 
-@Configuration
+//@Configuration
 public class RedisConfig {
     @Bean
     public DcsConnectionFactory dcsConnectionFactory(@Autowired(required = false) MultiZoneClient client) {

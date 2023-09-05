@@ -115,21 +115,21 @@ public class RedisTemplateTestController {
 
 
 
-    @Autowired
-    LockProvider lockProvider;
-    @SchedulerLock(name = "scheduledTaskName", lockAtMostFor = DURATION)
-    @GetMapping("lock")
-    public void scheduledTask(@RequestParam("key") String key,
-                              @RequestParam(value = "secend", required = false) Integer secend) {
-        log.info("获取锁成功");
-        SimpleLock simpleLock = lockProvider.lock(new LockConfiguration(Instant.now(), key, Duration.ofSeconds(10), Duration.ofSeconds(30))).get();
-        try {
-            Thread.sleep(20 * 1000L);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
+//    @Autowired
+//    LockProvider lockProvider;
+//    @SchedulerLock(name = "scheduledTaskName", lockAtMostFor = DURATION)
+//    @GetMapping("lock")
+//    public void scheduledTask(@RequestParam("key") String key,
+//                              @RequestParam(value = "secend", required = false) Integer secend) {
+//        log.info("获取锁成功");
+//        SimpleLock simpleLock = lockProvider.lock(new LockConfiguration(Instant.now(), key, Duration.ofSeconds(10), Duration.ofSeconds(30))).get();
+//        try {
+//            Thread.sleep(20 * 1000L);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//    }
 
 
 }
