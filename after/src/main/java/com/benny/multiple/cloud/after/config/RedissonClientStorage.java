@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * redisson client 的改造
  */
 @Slf4j
-@Service
+//@Service
 public class RedissonClientStorage {
     // dcs的客户端
     private final MultiZoneClient client;
