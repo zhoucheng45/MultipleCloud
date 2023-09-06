@@ -28,8 +28,8 @@ import java.util.List;
 public class RedisTemplateTestController {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
-    @Autowired
-    RedisTemplate<String, Object> redisTemplate;
+//    @Autowired
+//    RedisTemplate<String, Object> redisTemplate;
     @Autowired
     MultiZoneClient multiZoneClient;
 
