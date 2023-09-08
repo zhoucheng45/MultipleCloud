@@ -104,6 +104,7 @@ public class PeopleController {
                     throw new RuntimeException(e);
                 }
             }
+            lock.unlock();
             return o;
         }else {
             log.info("没有获取到锁");
@@ -117,19 +118,14 @@ public class PeopleController {
     }
 
     @GetMapping("redissonreleaseLock")
-    public Page<People> redissonreleaseLock(@RequestParam("key")String key){
+    public String redissonreleaseLock(@RequestParam("key")String key){
 
         RLock lock = redissonClient.getLock(key);
 
         lock.unlock();    // 会阻塞，直到获取锁
 
-        Page<People> peoplePage = peopleService.queryLast();
-        RBucket<Page<People>> people = redissonClient.getBucket("people");
-        people.set(peoplePage);
 
-        Page<People> o = people.get();
-
-        return o;
+        return "success:"+key;
     }
 
 }
