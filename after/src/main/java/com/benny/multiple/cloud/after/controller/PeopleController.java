@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author benny
  * @since 2023-07-21
  */
-//@RestController
-//@RequestMapping("/people")
+@RestController
+@RequestMapping("/people")
 public class PeopleController {
     @Autowired
     IPeopleService peopleService;
