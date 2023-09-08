@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.benny.multiple.cloud.after.entity.People;
 import com.benny.multiple.cloud.after.mapper.PeopleMapper;
 import com.benny.multiple.cloud.after.service.IPeopleService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,7 @@ import java.util.List;
  * @author benny
  * @since 2023-07-21
  */
+@Slf4j
 @Service
 public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> implements IPeopleService {
 
@@ -42,7 +44,7 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
     @Transactional
     @Override
     public void tx() {
-        List<People> peopleList = new ArrayList<>(100);
+        List<People> peopleList2 = new ArrayList<>(100);
 
         for (int i = 0; i < 20; i++) {
             People people = new People();
@@ -53,16 +55,23 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
             now.plusMinutes((int)(Math.random()*100));
             people.setCreateTime(now);
             people.setUpdateTime(now);
-            this.save(people);  // 采用一条一条插入，模拟大事务。
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            boolean add = peopleList.add(people);
-            System.out.println("插入第"+i+"条数据："+add);
+            boolean save = this.save(people);// 采用一条一条插入，模拟大事务。
+            log.info("插入第"+i+"条数据："+save);
         }
-//        this.saveBatch(peopleList,peopleList.size());
+
+        for (int i = 0; i < 20; i++) {
+            People people = new People();
+            people.setAge((int)(Math.random()*100));
+            people.setName(RandomStringUtils.random(10,true,true));
+
+            LocalDateTime now = LocalDateTime.now();
+            now.plusMinutes((int)(Math.random()*100));
+            people.setCreateTime(now);
+            people.setUpdateTime(now);
+
+            peopleList2.add(people);
+        }
+        boolean b = this.saveBatch(peopleList2, peopleList2.size());
+        log.info("批量插入:"+b);
     }
 }
