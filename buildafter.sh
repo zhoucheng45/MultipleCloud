@@ -1,4 +1,4 @@
-git pull
+git pull origin master
 img_version=v1$1
 
 cd $1
