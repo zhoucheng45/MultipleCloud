@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @RestController
 @RequestMapping("/people")
+
 public class PeopleController {
     @Autowired
     IPeopleService peopleService;
@@ -123,7 +124,6 @@ public class PeopleController {
         RLock lock = redissonClient.getLock(key);
 
         lock.unlock();    // 会阻塞，直到获取锁
-
 
         return "success:"+key;
     }

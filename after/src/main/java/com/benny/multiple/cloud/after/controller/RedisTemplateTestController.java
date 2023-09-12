@@ -22,6 +22,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RestController("/redis/template/")
@@ -100,7 +101,7 @@ public class RedisTemplateTestController {
 
 
     @GetMapping("list")
-    public String list(@RequestParam("key") String key, @RequestParam("val") String val, @RequestParam(value = "secend", required = false) Integer secend) {
+    public String list(@RequestParam("key") String key, @RequestParam("val") String val) {
         key = StringUtils.hasText(key) ? key : "name";
 
         Long l = stringRedisTemplate.opsForList().leftPush(key, val);
@@ -111,6 +112,27 @@ public class RedisTemplateTestController {
         }
         String s = range.stream().reduce((e1, e2) -> e1 + ", " + e2).get();
         return "success: "+s;
+    }
+
+
+    @GetMapping("map")
+    public String map(@RequestParam("key") String key, @RequestParam("hashKey") String hashKey, @RequestParam("val") String val) {
+
+
+        stringRedisTemplate.opsForHash().put(key,hashKey,val);
+        Object o = stringRedisTemplate.opsForHash().get(key, hashKey);
+        return "success: "+o;
+    }
+
+    @GetMapping("zset")
+    public String zset(@RequestParam("key") String key, @RequestParam("val") String val, @RequestParam("score") Double score) {
+
+
+        Boolean add = stringRedisTemplate.opsForZSet().add(key, val, score);
+        Set<String> range = stringRedisTemplate.opsForZSet().range(key, 0, 10);
+        // 获取分数排行前10的
+
+        return "success:";
     }
 
 
