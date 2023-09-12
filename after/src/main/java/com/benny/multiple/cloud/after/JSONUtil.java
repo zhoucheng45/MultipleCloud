@@ -3,14 +3,18 @@ package com.benny.multiple.cloud.after;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Slf4j
+@Component
 public class JSONUtil {
 
-    static ObjectMapper objectMapper = new ObjectMapper();
+    @Autowired
+    ObjectMapper objectMapper ;
 
 
-    public static String toJson(Object obj){
+    public String toJson(Object obj){
         String jsonString = null;
         try {
             jsonString = objectMapper.writeValueAsString(obj);

@@ -41,7 +41,8 @@ public class PeopleController {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-
+    @Autowired
+    JSONUtil jsonUtil;
     @Autowired
     private RedissonClient redissonClient;
 
@@ -82,7 +83,7 @@ public class PeopleController {
             o = people.get();
         }
 
-        return key+"="+ JSONUtil.toJson(o);
+        return key+"="+ jsonUtil.toJson(o);
     }
 
     boolean close = false;
