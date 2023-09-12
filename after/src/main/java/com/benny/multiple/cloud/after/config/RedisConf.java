@@ -30,7 +30,7 @@ public class RedisConf {
     @Value("${spring.redis.lockTimeOut:30000}")
     private long lockWatchTimeOut;
 
-    @Bean(destroyMethod="shutdown")
+    @Bean
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         JavaTimeModule javaTimeModule = new JavaTimeModule();
