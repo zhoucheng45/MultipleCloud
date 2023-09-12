@@ -1,7 +1,13 @@
 package com.benny.multiple.cloud.after.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.huawei.devspore.mas.redis.config.MasRedisConfiguration;
+import com.huawei.devspore.mas.redis.core.MultiZoneClient;
+import com.huawei.devspore.mas.redis.spring.boot.cache.DcsRedisson;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
+import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.ClusterServersConfig;
 import org.redisson.config.Config;
 import org.redisson.config.SentinelServersConfig;
@@ -12,7 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
-//@Configuration
+@Configuration
 public class RedisConf {
     /**
      * redisson协议前缀
@@ -24,21 +30,18 @@ public class RedisConf {
     @Value("${spring.redis.lockTimeOut:30000}")
     private long lockWatchTimeOut;
 
-//    @Bean(destroyMethod="shutdown")
-//    public RedissonClient redisson() {
-//        Config config = new Config();
-//        config.useSingleServer()
-//                .setAddress(SCHEMA_PREFIX+"152.67.210.191:16379")
-//                .setPassword("123456")
-//                .setTimeout(20000)
-//                .setConnectTimeout(20000)
-//                .setIdleConnectionTimeout(20000);
-//        return Redisson.create(config);
-//    }
+    @Bean(destroyMethod="shutdown")
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        objectMapper.registerModule(javaTimeModule);
+
+        return objectMapper;
+    }
 
 
-    @Bean
-    public RedissonClient redissonClient(RedisProperties redisProperties) {
+//    @Bean
+    public RedissonClient redissonClient1(RedisProperties redisProperties) {
         Config config = new Config();
         RedisProperties.Sentinel sentinel = redisProperties.getSentinel();
         RedisProperties.Cluster redisPropertiesCluster = redisProperties.getCluster();
@@ -79,5 +82,11 @@ public class RedisConf {
         }
         config.setLockWatchdogTimeout(lockWatchTimeOut);
         return Redisson.create(config);
+    }
+    @Bean
+    public RedissonClient redissonClient(ObjectMapper objectMapper, MultiZoneClient client, MasRedisConfiguration masRedisConfiguration) {
+        Config config = new Config();
+        config.setCodec(new JsonJacksonCodec(objectMapper));
+        return DcsRedisson.create(client,masRedisConfiguration,config);
     }
 }
