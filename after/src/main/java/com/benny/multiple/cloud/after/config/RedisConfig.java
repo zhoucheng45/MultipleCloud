@@ -57,8 +57,4 @@ public class RedisConfig {
         return new StringRedisTemplate(dcsConnectionFactory);
     }
 
-    @Bean("redissonClientStorage")
-    public RedissonClientStorage redissonClientStorage(MultiZoneClient client, MasRedisConfiguration masRedisConfiguration){
-        return new RedissonClientStorage(client, masRedisConfiguration);
-    }
 }

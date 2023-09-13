@@ -1,4 +1,4 @@
-package com.benny.multiple.cloud.after;//package com.benny.multiple.cloud;
+package com.benny.multiple.cloud.after.utils;//package com.benny.multiple.cloud;
 //
 //import com.baomidou.mybatisplus.generator.AutoGenerator;
 //import com.baomidou.mybatisplus.generator.config.*;

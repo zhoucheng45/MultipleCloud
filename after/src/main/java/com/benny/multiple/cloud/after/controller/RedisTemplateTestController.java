@@ -29,8 +29,7 @@ import java.util.Set;
 public class RedisTemplateTestController {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
-//    @Autowired
-//    RedisTemplate<String, Object> redisTemplate;
+
     @Autowired
     MultiZoneClient multiZoneClient;
 

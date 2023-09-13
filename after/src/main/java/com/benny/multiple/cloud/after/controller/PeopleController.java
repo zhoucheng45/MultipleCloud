@@ -2,7 +2,7 @@ package com.benny.multiple.cloud.after.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.benny.multiple.cloud.after.JSONUtil;
+import com.benny.multiple.cloud.after.utils.JSONUtil;
 import com.benny.multiple.cloud.after.entity.People;
 import com.benny.multiple.cloud.after.service.IPeopleService;
 import com.huawei.devspore.mas.redis.core.MultiZoneClient;
@@ -49,6 +49,7 @@ public class PeopleController {
 
     @Autowired
     private MultiZoneClient client;
+
     @GetMapping("last")
     public Page<People> last(){
         Page<People> peoplePage = peopleService.queryLast();
@@ -92,7 +93,7 @@ public class PeopleController {
     public Page<People> redissonLock(@RequestParam("lock")String lockKey, @RequestParam(value = "key") String key)throws Exception{
 
         RLock lock = redissonClient.getLock(lockKey);
-        boolean b = lock.tryLock(4, TimeUnit.MILLISECONDS);         //不会阻塞，获取到返回成功，没获取到返回失败。
+        boolean b = lock.tryLock(4, TimeUnit.SECONDS);         //不会阻塞，获取到返回成功，没获取到返回失败。
         if(b) {
             Page<People> peoplePage = peopleService.queryLast();
             RBucket<Page<People>> people = redissonClient.getBucket(key);

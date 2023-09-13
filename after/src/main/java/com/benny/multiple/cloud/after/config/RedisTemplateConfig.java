@@ -16,6 +16,11 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 @Slf4j
 @Configuration
 public class RedisTemplateConfig {
+    /**
+     * MultiZoneClient 是sdk中自动装配的
+     * @param client
+     * @return
+     */
     @Bean
     public DcsConnectionFactory dcsConnectionFactory(MultiZoneClient client) {
         return new DcsConnectionFactory(client);
