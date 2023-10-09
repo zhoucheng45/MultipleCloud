@@ -43,6 +43,7 @@ public class PeopleController {
 
     @Autowired
     JSONUtil jsonUtil;
+
     @Autowired
     private RedissonClient redissonClient;
 
@@ -89,6 +90,13 @@ public class PeopleController {
 
     boolean close = false;
 
+    /**
+     * redissonLock 分布式锁的模拟
+     * @param lockKey
+     * @param key
+     * @return
+     * @throws Exception
+     */
     @GetMapping("redissonLock")
     public Page<People> redissonLock(@RequestParam("lock")String lockKey, @RequestParam(value = "key") String key)throws Exception{
 
