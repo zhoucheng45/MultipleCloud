@@ -15,6 +15,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,8 @@ import java.util.List;
 import java.util.Set;
 
 @Slf4j
-@RestController("/redis/template/")
+@RestController
+@RequestMapping("/redis/template/")
 public class RedisTemplateTestController {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
