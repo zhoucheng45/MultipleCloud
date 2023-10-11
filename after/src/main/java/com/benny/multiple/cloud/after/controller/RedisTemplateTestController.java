@@ -57,7 +57,7 @@ public class RedisTemplateTestController {
     @GetMapping("set")
     public String set(@RequestParam("key") String key, @RequestParam("val") String val) {
         key = StringUtils.hasText(key) ? key : "name";
-        val = StringUtils.hasText(val) ? key : "bobo";
+        val = StringUtils.hasText(val) ? val : "bobo";
         stringRedisTemplate.opsForValue().set(key, val, Duration.ofSeconds(DURATION));
         return "success";
     }
@@ -65,7 +65,7 @@ public class RedisTemplateTestController {
     @GetMapping("setWithTimeout")
     public String setWithTimeout(@RequestParam("key") String key, @RequestParam("val") String val, @RequestParam(value = "secend", required = false) Integer secend) {
         key = StringUtils.hasText(key) ? key : "name";
-        val = StringUtils.hasText(val) ? key : "bobo";
+        val = StringUtils.hasText(val) ? val : "bobo";
         secend = secend == null ? secend : 10;
 
         stringRedisTemplate.opsForValue().set(key, val, Duration.ofSeconds(secend));
