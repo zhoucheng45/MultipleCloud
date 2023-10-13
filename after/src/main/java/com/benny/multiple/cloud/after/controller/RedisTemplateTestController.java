@@ -82,7 +82,7 @@ public class RedisTemplateTestController {
                 "return current";
         RedisScript<Long> redisScript = new DefaultRedisScript<>(luaScript, Long.class);
         // 执行Lua脚本
-        Long execute = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), secend);
+        Long execute = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), secend+"");
 
         return "success: "+execute;
     }
@@ -99,7 +99,7 @@ public class RedisTemplateTestController {
         int i=0;
         while  (run) {
             // 执行Lua脚本
-            Long execute = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), secend);
+            Long execute = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), secend + "");
             i++;
             if( i %100 == 0){
                 try {
@@ -126,7 +126,7 @@ public class RedisTemplateTestController {
                 "return current";
         RedisScript<Long> redisScript = new DefaultRedisScript<>(luaScript, Long.class);
         // 执行Lua脚本
-        Long execute = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), secend);
+        Long execute = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), secend+"");
 
         return "success: "+execute;
     }
