@@ -86,6 +86,37 @@ public class RedisTemplateTestController {
 
         return "success: "+execute;
     }
+
+    boolean run = false;
+    @GetMapping("incr1")
+    public String incr1(@RequestParam("key") String key, @RequestParam(value = "secend", required = false) Integer secend) {
+        key = StringUtils.hasText(key) ? key : "name";
+        String luaScript = "local current\n" +
+                "current = redis.call('incr',KEYS[1])\n" +
+                "redis.call('expire',KEYS[1], ARGV[1])\n" +
+                "return current";
+        RedisScript<Long> redisScript = new DefaultRedisScript<>(luaScript, Long.class);
+        int i=0;
+        while  (run) {
+            // 执行Lua脚本
+            Long execute = stringRedisTemplate.execute(redisScript, Collections.singletonList(key), secend + "");
+            i++;
+            if( i %100 == 0){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return "success: ";
+    }
+    @GetMapping("setRun")
+    public boolean setRun(){
+        this.run = !this.run;
+        return this.run;
+    }
+
     @GetMapping("decr")
     public String decr(@RequestParam("key") String key, @RequestParam(value = "secend", required = false) Integer secend) {
         key = StringUtils.hasText(key) ? key : "name";
