@@ -1,4 +1,5 @@
 git pull
+
 img_version=v1$1
 docker build -f Dockerfile$1 -t multiple-cloud:$img_version .
 
