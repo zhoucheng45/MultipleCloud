@@ -8,7 +8,6 @@ logging:
   level:
     com.alibaba.**: ${ALI_LOG:info}
     root: ${ROOT_LOG:info}
-
 #
 #devspore:
 #  datasource:
@@ -62,3 +61,6 @@ logging:
 #          azs:
 #          loadBalance: round_robin
 #          slaves :
+server:
+  servlet:
+    context-path: /after

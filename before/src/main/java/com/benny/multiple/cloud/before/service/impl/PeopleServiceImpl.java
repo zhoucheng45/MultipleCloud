@@ -6,12 +6,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.benny.multiple.cloud.before.entity.People;
 import com.benny.multiple.cloud.before.mapper.PeopleMapper;
 import com.benny.multiple.cloud.before.service.IPeopleService;
-import net.javacrumbs.shedlock.core.LockProvider;
-import net.javacrumbs.shedlock.core.SchedulerLock;
-import net.javacrumbs.shedlock.core.SimpleLock;
+
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +16,7 @@ import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 /**
  * <p>
@@ -94,7 +91,7 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
         return people;
     }
 
-    @SchedulerLock(name = "wer")
+
     public void redisLock(){
         number ++;
     }

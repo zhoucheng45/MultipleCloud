@@ -8,7 +8,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>before</module>
-        <module>after</module>
+        <module>before-api</module>
+<!--        <module>after</module>-->
+        <module>portal</module>
         <module>gateway</module>
     </modules>
 

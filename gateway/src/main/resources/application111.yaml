@@ -1,0 +1,33 @@
+
+# application.yml
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: example_route
+          uri: http://43.154.107.17:8080/
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/people/**
+
+
+
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848,127.0.0.1:8849
+    username: root
+    password: 123456
+    auto-refresh: true
+    bootstrap:
+      enable: true
+    type: yaml
+    namespace: dev-namespace
+    group: DEFAULT_GROUP
+    data-id: springcloud-demo.yaml
+#    enable-remote-sync-config: true
+# Logger Config
+
+logging:
+  level:
+    root: debug
