@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: before
@@ -16,7 +17,8 @@ spring:
 logging:
   level:
     com.alibaba.cloud.nacos: debug
-    root: debug
+    root: info
 server:
   servlet:
     context-path: /
+  port: 8083

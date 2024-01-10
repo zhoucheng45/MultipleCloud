@@ -3,7 +3,7 @@
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
     <springProperty scope="context" name="rootLoggerLevel" source="logging.level.root" defaultValue="INFO"/>
     <!-- 定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
-    <property name="LOG_FILE" value="logs/${springAppName}.log"/>
+    <property name="LOG_FILE" value="${springAppName}/${springAppName}.log"/>
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
